@@ -1,0 +1,51 @@
+{
+  "diagramName": "CoreElements3",
+  "config": {
+    "width": 600,
+    "height": 600,
+    "xRangeMin": -2,
+    "xRangeMax": 8,
+    "yRangeMin": -5,
+    "yRangeMax": 5,
+    "gridMajorSpacing": 1.0,
+    "gridMinorSpacing": 0.2,
+    "axisTickInterval": 1.0
+  },
+  "elements": {
+    "grid": {
+      "enabled": true,
+      "styles": {
+        "major": {
+          "color": "Colors.grey.shade400",
+          "strokeWidth": 1.0
+        },
+        "minor": {
+          "color": "Colors.grey.shade300",
+          "strokeWidth": 0.5
+        }
+      }
+    },
+    "frame": {
+      "enabled": true,
+      "style": {
+        "color": "Colors.blue",
+        "strokeWidth": 2.0,
+        "cornerRadius": 0.0,
+        "backgroundColor": null
+      }
+    },
+    "axes": {
+      "enabled": true,
+      "style": {
+        "color": "Colors.black",
+        "strokeWidth": 2.0,
+        "tickLength": 0.2,
+        "tickLabelGap": 0.1,
+        "labelStyle": {
+          "color": "Colors.black",
+          "fontSize": 14.0
+        }
+      }
+    }
+  }
+}

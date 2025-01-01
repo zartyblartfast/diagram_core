@@ -1,0 +1,86 @@
+{
+  "diagramName": "CoreElements5",
+  "config": {
+    "width": 600,
+    "height": 600,
+    "xRangeMin": -5,
+    "xRangeMax": 5,
+    "yRangeMin": -5,
+    "yRangeMax": 5,
+    "gridMajorSpacing": 1.0,
+    "gridMinorSpacing": 0.5,
+    "axisTickInterval": 1.0,
+    "axisLabelFormat": "integer",
+    "showGrid": true,
+    "showAxes": true,
+    "showFrame": true,
+    "theme": {
+      "enabled": true,
+      "defaultTheme": "monochrome",
+      "themes": {
+        "monochrome": {
+          "background": "Colors.white",
+          "element": "Colors.black",
+          "elementFill": "Color(0x33448AFF)",
+          "grid": "Color(0x8A000000)",
+          "gridMinor": "Color(0x42000000)"
+        }
+      }
+    }
+  },
+  "elements": {
+    "grid": {
+      "enabled": true,
+      "coordinates": true,
+      "styles": {
+        "major": {
+          "color": "Colors.grey.shade400",
+          "strokeWidth": 1.0
+        },
+        "minor": {
+          "color": "Colors.grey.shade300",
+          "strokeWidth": 0.5
+        }
+      }
+    },
+    "frame": {
+      "enabled": true,
+      "style": {
+        "color": "Colors.blue",
+        "strokeWidth": 2.0,
+        "cornerRadius": 0.0,
+        "backgroundColor": null
+      }
+    },
+    "axes": {
+      "enabled": true,
+      "style": {
+        "color": "Colors.black",
+        "strokeWidth": 2.0,
+        "tickLength": 0.2,
+        "tickLabelGap": 0.1,
+        "labelStyle": {
+          "color": "Colors.black",
+          "fontSize": 14.0
+        }
+      }
+    },
+    "shapes": {
+      "enabled": true,
+      "items": [
+        {
+          "type": "rectangle",
+          "centerX": 0,
+          "centerY": 2,
+          "width": 2,
+          "height": 1,
+          "style": {
+            "strokeColor": "Colors.blue",
+            "fillColor": "Colors.blue.withOpacity(0.2)",
+            "strokeWidth": 1.0
+          }
+        }
+      ]
+    }
+  }
+}

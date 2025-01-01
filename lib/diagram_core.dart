@@ -25,3 +25,8 @@ export 'src/elements/elements.dart';
 
 /// Widget system
 export 'src/widgets/diagram_widget.dart';
+
+/// Theme system
+export 'src/themes/core_theme.dart';
+export 'src/themes/theme_registry.dart';
+export 'src/themes/built_in/monochrome_theme.dart';

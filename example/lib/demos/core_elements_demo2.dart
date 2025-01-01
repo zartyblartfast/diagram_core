@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:diagram_core/diagram_core.dart';
-//import 'dart:math' as math;
 
-/// Demonstrates the usage of core elements (Grid, Axis, Frame)
-class CoreElementsDemo extends StatefulWidget {
-  const CoreElementsDemo({super.key});
+/// Demonstrates the usage of core elements (Grid, Axis, Frame) with a different coordinate layout
+class CoreElementsDemo2 extends StatefulWidget {
+  const CoreElementsDemo2({super.key});
 
   @override
-  State<CoreElementsDemo> createState() => _CoreElementsDemoState();
+  State<CoreElementsDemo2> createState() => _CoreElementsDemo2State();
 }
 
-class _CoreElementsDemoState extends State<CoreElementsDemo> {
-  late final CoreElementsDiagram _diagram;
+class _CoreElementsDemo2State extends State<CoreElementsDemo2> {
+  late final CoreElementsDiagram2 _diagram;
 
   @override
   void initState() {
     super.initState();
-    _diagram = CoreElementsDiagram(
+    _diagram = CoreElementsDiagram2(
       config: DiagramConfig(
-        // Use square canvas with -10 to +10 coordinate range
         width: 600,
         height: 600,
-        xRangeMin: -10,
-        xRangeMax: 10,
-        yRangeMin: -10,
+        xRangeMin: -5,
+        xRangeMax: 5,
+        yRangeMin: 0,
         yRangeMax: 10,
-        // Grid and axis settings
-        gridMajorSpacing: 2.0,
-        gridMinorSpacing: 0.5,
-        axisTickInterval: 2.0,
-        // Show all elements
-        showGrid: true,
-        showAxes: true,
-        showFrame: true,
+        // Grid and axis settings with unit spacing
+        gridMajorSpacing: 1.0,  // Changed from 2.0 to show major lines at every unit
+        gridMinorSpacing: 0.2,  // Changed from 0.5 to show 5 minor divisions per unit
+        axisTickInterval: 1.0,  // Changed from 2.0 to show labels at every unit
       ),
     );
     _diagram.initializeComponents();
@@ -42,24 +36,20 @@ class _CoreElementsDemoState extends State<CoreElementsDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Core Elements Demo'),
+        title: const Text('Core Elements Demo 2'),
       ),
       body: Center(
         child: DiagramWidget(controller: _diagram),
       ),
     );
   }
-
-  @override
-  void dispose() {
-    _diagram.dispose();
-    super.dispose();
-  }
 }
 
-/// A diagram that demonstrates core elements working together
-class CoreElementsDiagram extends CoreDiagramBase {
-  CoreElementsDiagram({required DiagramConfig config}) : super(config: config);
+/// A diagram that demonstrates core elements working together with modified coordinate layout
+class CoreElementsDiagram2 extends CoreDiagramBase {
+  CoreElementsDiagram2({
+    required super.config,
+  });
 
   @override
   List<DrawableElement> createDiagramElements() {
@@ -104,10 +94,10 @@ class CoreElementsDiagram extends CoreDiagramBase {
     
     // Add axes if enabled (drawn on top)
     if (showAxes) {
-      // Draw X axis
+      // Draw X axis at y = 0
       elements.add(AxisElement(
         x: 0,  // Start at origin
-        y: 0,  // Place at origin
+        y: 0,  // Place at y = 0
         color: Colors.black,
         orientation: AxisOrientation.horizontal,
         majorTickInterval: config.axisTickInterval,
@@ -125,7 +115,7 @@ class CoreElementsDiagram extends CoreDiagramBase {
         labelFormatter: (value) => value.toStringAsFixed(0),
       ));
       
-      // Draw Y axis
+      // Draw Y axis at x = 0
       elements.add(AxisElement(
         x: 0,  // Place at origin
         y: 0,  // Start at origin

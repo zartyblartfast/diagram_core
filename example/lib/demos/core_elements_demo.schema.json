@@ -1,0 +1,193 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Core Elements Demo Schema",
+  "description": "Schema for creating core element demo diagrams",
+  "type": "object",
+  "required": ["diagramName", "config", "elements"],
+  "properties": {
+    "diagramName": {
+      "type": "string",
+      "description": "Name of the diagram class (will be suffixed with 'Demo')",
+      "pattern": "^[A-Z][a-zA-Z0-9]*$"
+    },
+    "config": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "xRangeMin",
+        "xRangeMax",
+        "yRangeMin",
+        "yRangeMax",
+        "gridMajorSpacing",
+        "gridMinorSpacing",
+        "axisTickInterval"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "description": "Width of the diagram canvas"
+        },
+        "height": {
+          "type": "number",
+          "description": "Height of the diagram canvas"
+        },
+        "xRangeMin": {
+          "type": "number",
+          "description": "Minimum x coordinate value"
+        },
+        "xRangeMax": {
+          "type": "number",
+          "description": "Maximum x coordinate value"
+        },
+        "yRangeMin": {
+          "type": "number",
+          "description": "Minimum y coordinate value"
+        },
+        "yRangeMax": {
+          "type": "number",
+          "description": "Maximum y coordinate value"
+        },
+        "gridMajorSpacing": {
+          "type": "number",
+          "description": "Spacing between major grid lines"
+        },
+        "gridMinorSpacing": {
+          "type": "number",
+          "description": "Spacing between minor grid lines"
+        },
+        "axisTickInterval": {
+          "type": "number",
+          "description": "Interval between axis ticks"
+        }
+      }
+    },
+    "elements": {
+      "type": "object",
+      "properties": {
+        "grid": {
+          "type": "object",
+          "required": ["enabled", "styles"],
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether to show the grid"
+            },
+            "styles": {
+              "type": "object",
+              "required": ["major", "minor"],
+              "properties": {
+                "major": {
+                  "type": "object",
+                  "required": ["color", "strokeWidth"],
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "description": "Color of major grid lines (Flutter Colors value)"
+                    },
+                    "strokeWidth": {
+                      "type": "number",
+                      "description": "Width of major grid lines"
+                    }
+                  }
+                },
+                "minor": {
+                  "type": "object",
+                  "required": ["color", "strokeWidth"],
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "description": "Color of minor grid lines (Flutter Colors value)"
+                    },
+                    "strokeWidth": {
+                      "type": "number",
+                      "description": "Width of minor grid lines"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "frame": {
+          "type": "object",
+          "required": ["enabled", "style"],
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether to show the frame"
+            },
+            "style": {
+              "type": "object",
+              "required": ["color", "strokeWidth", "cornerRadius", "backgroundColor"],
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Color of frame border (Flutter Colors value)"
+                },
+                "strokeWidth": {
+                  "type": "number",
+                  "description": "Width of frame border"
+                },
+                "cornerRadius": {
+                  "type": "number",
+                  "description": "Radius of frame corners"
+                },
+                "backgroundColor": {
+                  "type": ["string", "null"],
+                  "description": "Background color of frame (Flutter Colors value or null for transparent)"
+                }
+              }
+            }
+          }
+        },
+        "axes": {
+          "type": "object",
+          "required": ["enabled", "style"],
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Whether to show the axes"
+            },
+            "style": {
+              "type": "object",
+              "required": ["color", "strokeWidth", "tickLength", "tickLabelGap", "labelStyle"],
+              "properties": {
+                "color": {
+                  "type": "string",
+                  "description": "Color of axes (Flutter Colors value)"
+                },
+                "strokeWidth": {
+                  "type": "number",
+                  "description": "Width of axis lines"
+                },
+                "tickLength": {
+                  "type": "number",
+                  "description": "Length of axis ticks in diagram units"
+                },
+                "tickLabelGap": {
+                  "type": "number",
+                  "description": "Gap between tick and label in diagram units"
+                },
+                "labelStyle": {
+                  "type": "object",
+                  "required": ["color", "fontSize"],
+                  "properties": {
+                    "color": {
+                      "type": "string",
+                      "description": "Color of axis labels (Flutter Colors value)"
+                    },
+                    "fontSize": {
+                      "type": "number",
+                      "description": "Font size of axis labels"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

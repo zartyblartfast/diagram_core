@@ -7,6 +7,7 @@ import '../state/diagram_state_manager.dart';
 import '../coordinate/coordinate_system.dart';
 import '../config/diagram_config.dart';
 import '../elements/drawable_element.dart';
+import '../factories/shape_element_factory.dart';
 
 /// Base class for diagrams that provides core functionality
 abstract class CoreDiagramBase extends DiagramLayerController {
@@ -15,12 +16,31 @@ abstract class CoreDiagramBase extends DiagramLayerController {
   bool _showGrid = false;
   bool _showFrame = false;
 
+  /// Factory for creating shape elements
+  late final ShapeElementFactory _shapeFactory;
+  
+  @protected
+  ShapeElementFactory get shapeFactory => _shapeFactory;
+
   CoreDiagramBase({
     required DiagramConfig config,
   }) : _showAxes = config.showAxes,
        _showGrid = config.showGrid,
        _showFrame = config.showFrame,
        super(config: config);
+
+  @override
+  void initializeComponents() {
+    // Initialize shapeFactory first
+    _shapeFactory = createShapeFactory();
+    // Then initialize other components
+    super.initializeComponents();
+  }
+
+  @protected
+  ShapeElementFactory createShapeFactory() {
+    return ShapeElementFactory(config: config);
+  }
 
   @override
   @protected
@@ -98,6 +118,12 @@ abstract class CoreDiagramBase extends DiagramLayerController {
   /// Toggle frame visibility
   void toggleFrame() {
     _showFrame = !_showFrame;
+    updateElements();
+  }
+
+  /// Toggle theme and update diagram
+  void toggleTheme() {
+    stateManager.toggleTheme();
     updateElements();
   }
 

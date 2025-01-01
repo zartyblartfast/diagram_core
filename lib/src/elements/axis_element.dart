@@ -70,7 +70,7 @@ class AxisElement extends DrawableElement {
          ),
          tickLength: 8.0,  // Increased tick length
        ),
-       labelFormatter = labelFormatter ?? ((value) => value.toStringAsFixed(1));
+       labelFormatter = labelFormatter ?? ((value) => value.toInt().toString());
 
   @override
   void paintElement(Canvas canvas, CoordinateSystem coordinates) {

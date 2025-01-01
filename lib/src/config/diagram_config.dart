@@ -24,6 +24,7 @@ class DiagramConfig {
   final Color axisColor;
   final double axisOpacity;
   final double axisTickInterval;
+  final String axisLabelFormat;  // 'integer' (default) or 'decimal'
   
   // Frame settings
   final Color frameStrokeColor;
@@ -54,6 +55,7 @@ class DiagramConfig {
     this.axisColor = Colors.black,
     this.axisOpacity = 1.0,
     this.axisTickInterval = 1.0,
+    this.axisLabelFormat = 'integer',  // Default to integer format
     this.frameStrokeColor = Colors.black,
     this.frameStrokeWidth = 2.0,
     this.frameStrokeOpacity = 1.0,
@@ -82,6 +84,7 @@ class DiagramConfig {
     Color? axisColor,
     double? axisOpacity,
     double? axisTickInterval,
+    String? axisLabelFormat,
     Color? frameStrokeColor,
     double? frameStrokeWidth,
     double? frameStrokeOpacity,
@@ -108,6 +111,7 @@ class DiagramConfig {
       axisColor: axisColor ?? this.axisColor,
       axisOpacity: axisOpacity ?? this.axisOpacity,
       axisTickInterval: axisTickInterval ?? this.axisTickInterval,
+      axisLabelFormat: axisLabelFormat ?? this.axisLabelFormat,
       frameStrokeColor: frameStrokeColor ?? this.frameStrokeColor,
       frameStrokeWidth: frameStrokeWidth ?? this.frameStrokeWidth,
       frameStrokeOpacity: frameStrokeOpacity ?? this.frameStrokeOpacity,
