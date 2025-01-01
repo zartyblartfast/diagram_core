@@ -1,0 +1,23 @@
+name: diagram_core
+description: A Flutter framework for creating structured and maintainable diagrams
+version: 0.0.1
+homepage: https://github.com/zartyblartfast/diagram_core
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  analyzer: ^2.6.0
+  path: ^1.8.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  dart_code_metrics: ^4.16.0
+
+flutter:
+  uses-material-design: true
