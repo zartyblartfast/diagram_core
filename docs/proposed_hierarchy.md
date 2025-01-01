@@ -61,6 +61,74 @@ classDiagram
         +themeSettings
         +gridSettings
     }
+
+    %% Component Style Configuration
+    class GridLineStyle {
+        +color
+        +strokeWidth
+        +dashPattern
+    }
+
+    class GridElement {
+        +majorSpacing
+        +minorSpacing
+        +majorStyle
+        +minorStyle
+        +showMinorLines
+        +coordinates
+    }
+
+    class AxisStyle {
+        +color
+        +strokeWidth
+        +labelStyle
+        +tickLength
+        +tickLabelGap
+    }
+
+    class AxisElement {
+        +orientation
+        +majorTickInterval
+        +minorTickInterval
+        +labelFormatter
+        +style
+    }
+
+    class FrameBorderStyle {
+        +color
+        +strokeWidth
+        +dashPattern
+        +cornerRadius
+    }
+
+    class FrameCornerDecoration {
+        +size
+        +color
+        +strokeWidth
+        +showTopLeft
+        +showTopRight
+        +showBottomLeft
+        +showBottomRight
+    }
+
+    class FrameElement {
+        +width
+        +height
+        +borderStyle
+        +backgroundColor
+        +cornerDecoration
+        +padding
+    }
+
+    %% Coordinate System Integration
+    class CoordinateSystem {
+        +toCanvas(x, y)
+        +scale
+    }
+
+    class DrawableElement {
+        +paintElement(canvas, coordinates)
+    }
 ```
 
 ## Key Benefits

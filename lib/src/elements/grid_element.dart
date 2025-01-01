@@ -70,10 +70,6 @@ class GridElement extends DrawableElement {
       ..strokeWidth = style.strokeWidth
       ..style = PaintingStyle.stroke;
 
-    print('Drawing grid lines with spacing: $spacing');
-    print('Coordinate range: X(${coordinates.xRangeMin}, ${coordinates.xRangeMax}), Y(${coordinates.yRangeMin}, ${coordinates.yRangeMax})');
-    print('Paint color: ${paint.color}, strokeWidth: ${paint.strokeWidth}');
-
     // Calculate the number of lines needed
     final xStart = (coordinates.xRangeMin / spacing).floor() * spacing;
     final xEnd = (coordinates.xRangeMax / spacing).ceil() * spacing;
@@ -84,16 +80,22 @@ class GridElement extends DrawableElement {
     for (double x = xStart; x <= xEnd; x += spacing) {
       final start = coordinates.toCanvas(x, coordinates.yRangeMin);
       final end = coordinates.toCanvas(x, coordinates.yRangeMax);
-      canvas.drawLine(Offset(start.dx.roundToDouble(), start.dy), Offset(end.dx.roundToDouble(), end.dy), paint);
-      print('Drawing vertical line at x=$x, start=$start, end=$end');
+      canvas.drawLine(
+        Offset(start.dx.roundToDouble(), start.dy),
+        Offset(end.dx.roundToDouble(), end.dy),
+        paint
+      );
     }
 
     // Draw horizontal lines
     for (double y = yStart; y <= yEnd; y += spacing) {
       final start = coordinates.toCanvas(coordinates.xRangeMin, y);
       final end = coordinates.toCanvas(coordinates.xRangeMax, y);
-      canvas.drawLine(Offset(start.dx, start.dy.roundToDouble()), Offset(end.dx, end.dy.roundToDouble()), paint);
-      print('Drawing horizontal line at y=$y, start=$start, end=$end');
+      canvas.drawLine(
+        Offset(start.dx, start.dy.roundToDouble()),
+        Offset(end.dx, end.dy.roundToDouble()),
+        paint
+      );
     }
   }
 

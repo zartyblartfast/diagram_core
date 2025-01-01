@@ -72,55 +72,41 @@ class FrameElement extends DrawableElement {
     this.padding = EdgeInsets.zero,
   }) : borderStyle = borderStyle ?? FrameBorderStyle(
          color: color,
-         strokeWidth: 2.0,  // Increased default stroke width
+         strokeWidth: 1.0,
        );
 
   @override
   void paintElement(Canvas canvas, CoordinateSystem coordinates) {
-    print('Painting FrameElement');
-    print('Frame coordinates: x=$x, y=$y, width=$width, height=$height');
-    print('Coordinate scale: ${coordinates.scale}');
-    print('Canvas size: ${coordinates.canvasSize}');
-
     // Calculate frame rect in diagram coordinates
     final left = x - width/2;
     final top = y - height/2;
     final right = left + width;
     final bottom = top + height;
     final rect = Rect.fromLTRB(left, top, right, bottom);
-    
-    print('Frame rect in diagram coordinates: $rect');
 
     // Convert frame rect to canvas coordinates
     final topLeftCanvas = coordinates.toCanvas(left, top);
     final bottomRightCanvas = coordinates.toCanvas(right, bottom);
     final rectCanvas = Rect.fromPoints(topLeftCanvas, bottomRightCanvas);
 
-    print('Frame rect in canvas coordinates: $rectCanvas');
-
     // Draw background if specified
     if (backgroundColor != null) {
       final backgroundPaint = Paint()
         ..color = backgroundColor!.withOpacity(opacity)
         ..style = PaintingStyle.fill;
-      
-      print('Drawing background: color=${backgroundPaint.color}, opacity=$opacity');
       canvas.drawRect(rectCanvas, backgroundPaint);
     }
 
     // Draw border
     final borderPaint = Paint()
       ..color = borderStyle.color.withOpacity(opacity)
-      ..strokeWidth = borderStyle.strokeWidth  // Remove scaling
+      ..strokeWidth = borderStyle.strokeWidth
       ..style = PaintingStyle.stroke;
 
-    print('Drawing border: color=${borderPaint.color}, strokeWidth=${borderPaint.strokeWidth}, opacity=$opacity');
-    print('Border style: color=${borderStyle.color}, strokeWidth=${borderStyle.strokeWidth}');
     canvas.drawRect(rectCanvas, borderPaint);
 
     // Draw corner decorations if specified
     if (cornerDecoration != null) {
-      print('Drawing corner decorations');
       _drawCornerDecorations(canvas, coordinates, rectCanvas);
     }
   }
@@ -129,10 +115,10 @@ class FrameElement extends DrawableElement {
   void _drawCornerDecorations(Canvas canvas, CoordinateSystem coordinates, Rect rect) {
     final decorationPaint = Paint()
       ..color = cornerDecoration!.color.withOpacity(opacity)
-      ..strokeWidth = cornerDecoration!.strokeWidth / coordinates.scale  // Scale stroke width
+      ..strokeWidth = cornerDecoration!.strokeWidth
       ..style = PaintingStyle.stroke;
 
-    final size = cornerDecoration!.size / coordinates.scale;
+    final size = cornerDecoration!.size;
 
     // Top-left corner
     if (cornerDecoration!.showTopLeft) {

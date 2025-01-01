@@ -42,34 +42,23 @@ class BasicDiagramLayer extends ChangeNotifier implements IDiagramLayer {
 
   @override
   void updateCoordinateSystem(CoordinateSystem newSystem) {
-    print('Updating coordinate system');
-    print('Old origin: ${_coordinateSystem.origin}');
-    print('New origin: ${newSystem.origin}');
-    print('Old scale: ${_coordinateSystem.scale}');
-    print('New scale: ${newSystem.scale}');
     _coordinateSystem = newSystem;
     notifyListeners();
   }
 
   @override
   void addElement(DrawableElement element) {
-    print('Adding element: ${element.runtimeType}');
     _elements.add(element);
     notifyListeners();
   }
 
   @override
   void updateElements() {
-    print('Updating elements');
-    // Trigger a rebuild of all elements
     notifyListeners();
   }
 
   @override
   void handleStateChange(Map<String, dynamic> state) {
-    print('Handling state change');
-    // Basic implementation just triggers an update
-    // Derived classes can implement more sophisticated state handling
     updateElements();
   }
 
@@ -78,7 +67,6 @@ class BasicDiagramLayer extends ChangeNotifier implements IDiagramLayer {
 
   @override
   void clear() {
-    print('Clearing elements');
     _elements.clear();
     notifyListeners();
   }

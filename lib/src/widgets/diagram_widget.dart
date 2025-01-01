@@ -18,20 +18,13 @@ class _DiagramWidgetState extends State<DiagramWidget> {
   @override
   void initState() {
     super.initState();
-    print('DiagramWidget initState');
-    // Connect the renderer's updateView to setState
     _connectRenderer();
   }
 
   void _connectRenderer() {
-    print('Connecting renderer to setState');
-    // Use extension method to connect renderer to setState
     widget.controller.connectRenderer(() {
-      print('Renderer requested update');
       if (mounted) {
-        setState(() {
-          print('Updating widget state');
-        });
+        setState(() {});
       }
     });
   }
@@ -39,7 +32,6 @@ class _DiagramWidgetState extends State<DiagramWidget> {
   @override
   void didUpdateWidget(DiagramWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('DiagramWidget didUpdateWidget');
     if (widget.controller != oldWidget.controller) {
       _connectRenderer();
     }
@@ -47,9 +39,7 @@ class _DiagramWidgetState extends State<DiagramWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print('DiagramWidget build');
     final config = widget.controller.config;
-    print('DiagramWidget config dimensions: ${config.width}x${config.height}');
     
     return SizedBox(
       width: config.width,

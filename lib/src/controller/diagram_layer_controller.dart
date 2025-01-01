@@ -20,33 +20,24 @@ abstract class DiagramLayerController {
   /// Initialize all core components
   @mustCallSuper
   void initializeComponents() {
-    print('Initializing components...');
-    
     // Initialize components in dependency order
     _coordinates = createCoordinateSystem();
-    print('Created coordinate system');
     
     _stateManager = createStateManager();
-    print('Created state manager');
     
     _layer = createLayer();
-    print('Created layer');
     
     _renderer = createRenderer();
-    print('Created renderer');
     
     // Initialize renderer with required dependencies
     _renderer.initialize(_layer, _coordinates);
-    print('Initialized renderer');
     
     // Wire up component listeners
     _stateManager.addListener(onStateChanged);
     _layer.addListener(onElementsUpdated);
-    print('Added listeners');
     
     // Force initial update
     updateDiagram();
-    print('Initial update complete');
   }
 
   /// Clean up resources
@@ -59,7 +50,6 @@ abstract class DiagramLayerController {
 
   /// Update the diagram state and trigger a redraw
   void updateDiagram() {
-    print('Updating diagram...');
     _stateManager.processUpdates();
     _layer.updateElements();
     _renderer.updateView();
@@ -112,7 +102,6 @@ abstract class DiagramLayerController {
   /// Event handlers for state changes and element updates
   @protected
   void onStateChanged() {
-    print('State changed');
     layer.handleStateChange(stateManager.currentState);
     coordinates.updateTransform(stateManager.viewportState);
     invalidateView();
@@ -120,7 +109,6 @@ abstract class DiagramLayerController {
 
   @protected
   void onElementsUpdated() {
-    print('Elements updated');
     invalidateView();
   }
 

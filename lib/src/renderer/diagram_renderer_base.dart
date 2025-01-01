@@ -38,26 +38,22 @@ abstract class DiagramRendererBase {
 
   /// Paint the diagram on a canvas
   void paint(Canvas canvas, Size size) {
-    print('Painting diagram...');
-    print('Canvas size: $size');
-    
+    if (_layer == null) return;
+
     // Save canvas state
     canvas.save();
-    
+
     // Update coordinate system with new canvas size
     _coordinates = _coordinates.copyWith(canvasSize: size);
     _coordinates.updateScale();
-    
+
     // Paint all elements in the layer using the updated coordinate system
-    print('Painting elements...');
     for (final element in _layer.elements) {
-      print('  Painting element: ${element.runtimeType}');
-      print('    Coordinate scale: ${_coordinates.scale}');
       canvas.save();
       element.paint(canvas, _coordinates);
       canvas.restore();
     }
-    
+
     // Restore canvas state
     canvas.restore();
   }

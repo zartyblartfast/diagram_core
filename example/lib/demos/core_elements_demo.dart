@@ -35,15 +35,11 @@ class _CoreElementsDemoState extends State<CoreElementsDemo> {
         showFrame: true,
       ),
     );
-    print('Created diagram');
     _diagram.initializeComponents();
-    print('Initialized diagram components');
   }
 
   @override
   Widget build(BuildContext context) {
-    print('Building CoreElementsDemo');
-    print('Diagram config dimensions: ${_diagram.config.width}x${_diagram.config.height}');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Core Elements Demo'),
@@ -67,12 +63,10 @@ class CoreElementsDiagram extends CoreDiagramBase {
 
   @override
   List<DrawableElement> createDiagramElements() {
-    print('Creating diagram elements...');
     final elements = <DrawableElement>[];
     
     // Add grid element first (drawn underneath)
     if (showGrid) {
-      print('Adding grid element');
       elements.add(GridElement(
         color: Colors.grey.shade300,
         majorSpacing: config.gridMajorSpacing,
@@ -90,11 +84,8 @@ class CoreElementsDiagram extends CoreDiagramBase {
     }
     
     // Add frame element (drawn behind axes)
-    print('Adding frame element');
     final frameWidth = config.xRangeMax - config.xRangeMin;
     final frameHeight = config.yRangeMax - config.yRangeMin;
-    print('Frame dimensions: width=$frameWidth, height=$frameHeight');
-    print('Diagram config: width=${config.width}, height=${config.height}');
     elements.add(FrameElement(
       x: (config.xRangeMax + config.xRangeMin) / 2,  // Center point
       y: (config.yRangeMax + config.yRangeMin) / 2,  // Center point
@@ -110,11 +101,9 @@ class CoreElementsDiagram extends CoreDiagramBase {
       cornerDecoration: null,  // Remove corner decoration
       padding: EdgeInsets.zero,  // Remove padding
     ));
-    print('Frame element added with blue border and transparent background');
     
     // Add axes if enabled (drawn on top)
     if (showAxes) {
-      print('Adding axis elements');
       // Draw X axis
       elements.add(AxisElement(
         x: 0,  // Start at origin
@@ -158,7 +147,6 @@ class CoreElementsDiagram extends CoreDiagramBase {
       ));
     }
     
-    print('Created ${elements.length} elements');
     return elements;
   }
 }

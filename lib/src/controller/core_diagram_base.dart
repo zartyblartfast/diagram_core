@@ -42,18 +42,14 @@ abstract class CoreDiagramBase extends DiagramLayerController {
   @override
   @protected
   IDiagramLayer createLayer() {
-    print('Creating layer...');
     final newLayer = BasicDiagramLayer(
       coordinateSystem: coordinates,
       showAxes: _showAxes,
     );
     
     // Add initial elements
-    print('Adding elements to layer...');
     final elements = createDiagramElements();
-    print('Created ${elements.length} elements');
     for (final element in elements) {
-      print('  Adding element: ${element.runtimeType}');
       newLayer.addElement(element);
     }
     
@@ -62,12 +58,9 @@ abstract class CoreDiagramBase extends DiagramLayerController {
 
   /// Update layer elements
   void updateElements() {
-    print('Updating elements...');
     layer.clear();
     final elements = createDiagramElements();
-    print('Created ${elements.length} elements');
     for (final element in elements) {
-      print('  Adding element: ${element.runtimeType}');
       layer.addElement(element);
     }
     updateDiagram();

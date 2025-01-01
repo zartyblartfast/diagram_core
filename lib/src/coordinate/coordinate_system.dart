@@ -68,7 +68,6 @@ class CoordinateSystem {
   Offset toCanvas(double x, double y) {
     final canvasX = (x - xRangeMin) / (xRangeMax - xRangeMin) * canvasSize.width;
     final canvasY = (yRangeMax - y) / (yRangeMax - yRangeMin) * canvasSize.height;
-    print('toCanvas: ($x, $y) -> (${canvasX.toStringAsFixed(2)}, ${canvasY.toStringAsFixed(2)})');
     return Offset(canvasX, canvasY);
   }
 
@@ -76,7 +75,6 @@ class CoordinateSystem {
   Offset fromCanvas(double x, double y) {
     final diagramX = x / canvasSize.width * (xRangeMax - xRangeMin) + xRangeMin;
     final diagramY = yRangeMax - y / canvasSize.height * (yRangeMax - yRangeMin);
-    print('fromCanvas: ($x, $y) -> (${diagramX.toStringAsFixed(2)}, ${diagramY.toStringAsFixed(2)})');
     return Offset(diagramX, diagramY);
   }
 
@@ -85,9 +83,6 @@ class CoordinateSystem {
     final xScale = canvasSize.width / (xRangeMax - xRangeMin);
     final yScale = canvasSize.height / (yRangeMax - yRangeMin);
     scale = math.min(xScale, yScale);
-    print('Updated scale: $scale');
-    print('Canvas size: $canvasSize');
-    print('Diagram range: X($xRangeMin, $xRangeMax), Y($yRangeMin, $yRangeMax)');
   }
 
   /// Gets the width of the diagram space in diagram units

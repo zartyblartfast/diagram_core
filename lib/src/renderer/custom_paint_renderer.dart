@@ -10,7 +10,6 @@ class CustomPaintRenderer extends DiagramRendererBase {
 
   @override
   Widget buildDiagramWidget() {
-    print('Building diagram widget');
     return RepaintBoundary(
       child: SizedBox(  // Ensure CustomPaint fills the container
         width: config.width,
@@ -27,7 +26,6 @@ class CustomPaintRenderer extends DiagramRendererBase {
 
   @override
   void updateView() {
-    print('Updating view');
     // This method would be connected to a StatefulWidget's setState
     // The actual implementation would be provided by a mixin or wrapper widget
   }
@@ -46,8 +44,6 @@ class _DiagramPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    print('Painting diagram');
-    print('Canvas size: $size');
     renderer.paint(canvas, size);
   }
 

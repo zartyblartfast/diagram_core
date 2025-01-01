@@ -2,22 +2,23 @@
 
 ## Phase 1: Core Elements
 1. Grid Element Implementation
-   - Create `grid_element.dart` in elements directory
-   - Implement major/minor grid lines
-   - Add configurable spacing and styling
-   - Support for different grid patterns
+   - Created `grid_element.dart` with major/minor grid lines
+   - Implemented configurable spacing and styling through GridLineStyle
+   - Added support for different grid patterns
+   - Integrated with coordinate system for proper scaling
 
 2. Axis Element Implementation
-   - Create `axis_element.dart` in elements directory
-   - Implement X and Y axis classes
-   - Add tick marks and labels
-   - Support for custom tick intervals
+   - Created `axis_element.dart` with X/Y axis support
+   - Implemented configurable tick marks and labels
+   - Added custom tick intervals and label formatting
+   - Integrated style customization through AxisStyle
 
 3. Frame Element Implementation
-   - Create `frame_element.dart` in elements directory
-   - Support for border styles
-   - Optional background fill
-   - Corner decorations
+   - Created `frame_element.dart` with border styling
+   - Added background fill support
+   - Implemented corner decorations
+   - Added padding support
+   - Integrated coordinate system transforms
 
 ## Phase 2: Widget Integration
 1. Create Widget Components
@@ -47,7 +48,36 @@
    class BasicDiagramExample extends CoreDiagramBase {
      @override
      List<DrawableElement> createDiagramElements() {
-       // Implementation showing basic usage
+       return [
+         GridElement(
+           majorSpacing: 1.0,
+           minorSpacing: 0.2,
+           coordinates: coordinates,
+           color: Colors.grey,
+         ),
+         AxisElement(
+           x: 0,
+           y: 0,
+           orientation: AxisOrientation.horizontal,
+           majorTickInterval: 1.0,
+           color: Colors.black,
+         ),
+         AxisElement(
+           x: 0,
+           y: 0,
+           orientation: AxisOrientation.vertical,
+           majorTickInterval: 1.0,
+           color: Colors.black,
+         ),
+         FrameElement(
+           x: 0,
+           y: 0,
+           width: 10,
+           height: 8,
+           color: Colors.black,
+           backgroundColor: Colors.white.withOpacity(0.5),
+         ),
+       ];
      }
    }
    ```
